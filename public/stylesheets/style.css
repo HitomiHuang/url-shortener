@@ -72,3 +72,7 @@ h2{
 .url-place form .back{
   width:100px;
 }
+.url-place form .invalid-alert{
+  color:red;
+  font-weight:bold;
+}

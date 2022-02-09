@@ -1,6 +1,4 @@
-const Url = require('../../models/url')
-let code = 'ikzXx'
-examinedCode(code, Url)
+const res = require("express/lib/response")
 
 function codeGenerator() {
   let code = ''
@@ -11,20 +9,4 @@ function codeGenerator() {
   return code
 }
 
-function examinedCode(generatedcode, database){
-    database.find({ code: generatedcode })
-    .lean()
-    .then((response) => {
-      do
-      {
-        generatedcode = codeGenerator()
-      }
-      while (generatedcode === response[0].code)
-    })
-    .catch(error => console.log(error))
-  
-  console.log(generatedcode) 
-}
-
 module.exports = codeGenerator
-module.exports = examinedCode

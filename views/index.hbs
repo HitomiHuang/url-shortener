@@ -1,6 +1,6 @@
 <form action="/urls" method="POST">
-  <input type="text" name="url" placeholder="input URL here">
-
+  <input type="text" name="url" placeholder="input URL here" required value ="{{url}}"> 
+  {{#if url}}<span class="invalid-alert">Invalid URL!! Please input valid URL.</span>{{/if}}
   <div class="url-button">
     <button type="submit" class="btn btn-outline-primary shorten">shorten</button>
   </div>
