@@ -5,19 +5,18 @@ const Url = require('../../models/url')
 const validUrl = require('valid-url')
 const codeGenerator = require('../../public/javascripts/code_function')
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id
+router.get('/:code', (req, res) => {
+    const code = req.params.code
+    return Url.findOne({ code })
 
-  Url.findById(id)
-    .lean()
-    .then(data => {
-      const code = data.code
-      res.render('result', { code })
-    })
-    .catch((error) => {
-      console.log(error)
-      res.render('errorPage', { error: error })
-    })
+      .then(response => {
+        res.redirect(`${response.url}`)
+      })
+      .catch((error) => {
+        console.log(error)
+        res.render('errorPage', { error: error })
+      })
+  
 })
 
 router.post('/', (req, res) => {
@@ -25,12 +24,9 @@ router.post('/', (req, res) => {
   if (validUrl.isUri(url)) {
     let code = codeGenerator()
 
-    // Url.findOne({code})
-    //   .then(data => data ? code = codeGenerator() : code )
-    
     Url.findOne({ url })
       .then(data => data ? data : Url.create({ url, code }))
-      .then(data => res.redirect(`/urls/${data._id}`))
+      .then(data => res.redirect(`/${data._id}`))
       .catch((error) => {
         console.log(error)
         res.render('errorPage', { error: error })
