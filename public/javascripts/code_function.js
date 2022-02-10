@@ -9,4 +9,11 @@ function codeGenerator() {
   return code
 }
 
+// function codeExamine(code, database) {
+//    database.findOne({code})
+//       .then(data => data ? code = codeGenerator() : code )
+//       .then(data => console.log(`${data.code}`))
+// }
+
 module.exports = codeGenerator
+// module.exports = codeExamine

@@ -3,10 +3,13 @@ const Schema = mongoose.Schema
 const urlSchema = new Schema({
   url: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   code: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   }
 })
 
